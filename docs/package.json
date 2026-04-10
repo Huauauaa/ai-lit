@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "pnpm -C ../packages/ui build && vitepress build",
     "preview": "vitepress preview"
   },
   "dependencies": {
