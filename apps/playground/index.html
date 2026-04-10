@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ai-lit playground</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #070a12;
+        color: rgba(255, 255, 255, 0.92);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial;
+      }
+      .wrap {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+      }
+      .panel {
+        width: min(820px, 100%);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: radial-gradient(
+            1200px 500px at 10% 10%,
+            rgba(79, 70, 229, 0.25),
+            transparent 55%
+          ),
+          rgba(255, 255, 255, 0.05);
+        padding: 26px;
+      }
+      h1 {
+        margin: 0 0 16px 0;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+      }
+      p {
+        margin: 0 0 18px 0;
+        opacity: 0.8;
+        font-size: 13px;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="panel">
+        <h1>Playground</h1>
+        <p>Importing <code>@ai-lit/ui</code> from workspace.</p>
+        <div class="row">
+          <ai-button id="btn">Click me</ai-button>
+          <ai-button disabled>Disabled</ai-button>
+        </div>
+        <div style="height:14px;"></div>
+        <ai-table
+          headers='["Name","Role"]'
+          rows='[["Alice","Admin"],["Bob","Editor"],["Charlie","Viewer"]]'
+        ></ai-table>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+

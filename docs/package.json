@@ -1,0 +1,17 @@
+{
+  "name": "@ai-lit/docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "dependencies": {
+    "@ai-lit/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}
+

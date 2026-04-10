@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ai-lit/ui dev</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #0b1020;
+        color: rgba(255, 255, 255, 0.92);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial;
+      }
+      .wrap {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+      }
+      .card {
+        padding: 28px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(10px);
+      }
+      h1 {
+        margin: 0 0 14px 0;
+        font-size: 16px;
+        font-weight: 600;
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1>@ai-lit/ui</h1>
+        <div style="display:flex; gap:12px;">
+          <ai-button>Primary</ai-button>
+          <ai-button disabled>Disabled</ai-button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/index.ts"></script>
+  </body>
+</html>

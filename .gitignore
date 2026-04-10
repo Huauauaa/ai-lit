@@ -1,0 +1,33 @@
+.DS_Store
+
+# Dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+*/dist/
+apps/*/dist/
+packages/*/dist/
+
+# Vite / VitePress
+.vite/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+
+# TypeScript
+*.tsbuildinfo
+
+# Env files
+.env
+.env.*
+
+# IDEs
+.idea/
+.vscode/
+

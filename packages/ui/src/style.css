@@ -1,0 +1,9 @@
+:host {
+  --ai-lit-radius: 10px;
+  --ai-lit-fg: #0f172a;
+  --ai-lit-bg: #ffffff;
+  --ai-lit-border: rgba(15, 23, 42, 0.14);
+  --ai-lit-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --ai-lit-accent: #4f46e5;
+}
+
