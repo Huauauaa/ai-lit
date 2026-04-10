@@ -9,6 +9,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# pnpm store (if configured to be local)
+.pnpm-store/
+
 # Build outputs
 dist/
 */dist/
