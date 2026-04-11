@@ -8,9 +8,15 @@
   "scripts": {
     "build": "pnpm -r build",
     "dev": "pnpm -r dev",
+    "test": "pnpm --filter @ai-lit/ui test",
     "typecheck": "pnpm -r typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "docs:dev": "pnpm -C docs dev",
     "docs:build": "pnpm -C docs build",
     "docs:preview": "pnpm -C docs preview"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.2"
   }
 }

@@ -1,9 +1,8 @@
-import DefaultTheme from "vitepress/theme";
-import type { Theme } from "vitepress";
+import DefaultTheme from 'vitepress/theme';
+import type { Theme } from 'vitepress';
 
-import "@ai-lit/ui";
+import '@ai-lit/ui';
 
 export default {
-  extends: DefaultTheme
+  extends: DefaultTheme,
 } satisfies Theme;
-

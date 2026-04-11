@@ -1,0 +1,9 @@
+node_modules
+dist
+**/dist
+.pnpm-store
+.vite
+docs/.vitepress/cache
+docs/.vitepress/dist
+*.tsbuildinfo
+pnpm-lock.yaml

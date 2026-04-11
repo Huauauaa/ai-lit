@@ -1,5 +1,12 @@
-export * from "./components/button";
-export * from "./components/table";
+import './element-prefix';
+import './components/login';
 
-export { default as styleUrl } from "./style.css?url";
-
+export {
+  elementLocalTag,
+  getElementPrefix,
+  isElementPrefixFrozen,
+  normalizeElementPrefix,
+  syncElementPrefixFromGlobal,
+} from './element-prefix';
+export * from './components/login';
+export { default as styleUrl } from './style.css?url';

@@ -15,16 +15,25 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "import": "./dist/config.js",
+      "require": "./dist/config.cjs"
+    },
     "./style.css": "./dist/style.css",
     "./dist/*": "./dist/*"
   },
   "sideEffects": [
-    "./dist/style.css"
+    "./dist/style.css",
+    "./dist/config.js",
+    "./dist/config.cjs"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsc -p tsconfig.build.json",
+    "build": "vite build && vite build -c vite.config.config.ts && tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "lint": "echo \"(skip) no lint configured\""
   },
   "dependencies": {
@@ -32,7 +41,9 @@
   },
   "devDependencies": {
     "@types/node": "^20.19.9",
+    "happy-dom": "^20.0.2",
     "typescript": "^5.9.2",
-    "vite": "^7.1.3"
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4"
   }
 }

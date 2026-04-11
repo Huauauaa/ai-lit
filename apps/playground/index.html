@@ -1,72 +1,235 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-Hans">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ai-lit playground</title>
+    <title>组件试验场</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&display=swap"
+      rel="stylesheet"
+    />
+    <!--
+      可选：在首个 type="module" 之前内联
+      <script>globalThis.AI_LIT_ELEMENT_PREFIX = "lab";</script>
+      则下方使用 <lab-login> 替代 <ai-login>。
+    -->
     <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
       html,
       body {
         height: 100%;
         margin: 0;
-        background: #070a12;
-        color: rgba(255, 255, 255, 0.92);
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Helvetica, Arial;
       }
-      .wrap {
+
+      body {
+        font-family: 'Newsreader', ui-serif, Georgia, serif;
+        color: rgba(255, 250, 240, 0.92);
+        background: #080706;
+        background-image:
+          radial-gradient(
+            ellipse 140% 90% at 10% -20%,
+            rgba(212, 165, 116, 0.18),
+            transparent 52%
+          ),
+          radial-gradient(
+            ellipse 80% 60% at 100% 80%,
+            rgba(120, 90, 60, 0.12),
+            transparent 45%
+          ),
+          repeating-linear-gradient(
+            -14deg,
+            transparent,
+            transparent 72px,
+            rgba(255, 248, 220, 0.018) 72px,
+            rgba(255, 248, 220, 0.018) 73px
+          ),
+          linear-gradient(168deg, #0c0a08 0%, #050403 48%, #0a0806 100%);
+        min-height: 100%;
+      }
+
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.055;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        z-index: 0;
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
         min-height: 100%;
         display: grid;
-        place-items: center;
-        padding: 32px;
+        grid-template-columns: auto 1fr;
+        align-items: stretch;
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: clamp(1.25rem, 4vw, 2.75rem);
+        gap: clamp(1.5rem, 5vw, 3.5rem);
       }
-      .panel {
-        width: min(820px, 100%);
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        background: radial-gradient(
-            1200px 500px at 10% 10%,
-            rgba(79, 70, 229, 0.25),
-            transparent 55%
-          ),
-          rgba(255, 255, 255, 0.05);
-        padding: 26px;
-      }
-      h1 {
-        margin: 0 0 16px 0;
-        font-size: 16px;
-        letter-spacing: 0.2px;
-      }
-      p {
-        margin: 0 0 18px 0;
-        opacity: 0.8;
-        font-size: 13px;
-      }
-      .row {
+
+      .spine {
         display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: rgba(212, 165, 116, 0.45);
+        border-right: 1px solid rgba(255, 248, 220, 0.08);
+        padding-right: clamp(1rem, 3vw, 1.75rem);
+        animation: fade-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .spine span {
+        display: inline-block;
+        transform: translateX(2px);
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: clamp(1.75rem, 4vw, 2.75rem);
+        padding: clamp(0.5rem, 2vw, 1rem) 0;
+      }
+
+      .hero {
+        max-width: 28rem;
+        animation: rise 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .hero .eyebrow {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.7rem;
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: rgba(212, 165, 116, 0.75);
+        margin: 0 0 0.85rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.15rem, 4.5vw, 3.1rem);
+        font-weight: 600;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        margin: 0 0 1rem;
+        font-style: normal;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        font-weight: 400;
+        color: rgba(255, 248, 220, 0.78);
+      }
+
+      .hero p {
+        margin: 0;
+        font-size: 1.05rem;
+        line-height: 1.55;
+        color: rgba(255, 250, 240, 0.58);
+      }
+
+      .stage {
+        display: flex;
+        justify-content: flex-start;
+        animation: rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+      }
+
+      ai-login {
+        --login-accent: #e0b078;
+        --login-accent-dim: rgba(224, 176, 120, 0.2);
+        --login-bg: #12100e;
+        --login-field: #0a0908;
+        --login-edge: rgba(255, 248, 220, 0.11);
+        --login-fg: rgba(255, 252, 245, 0.94);
+        --login-muted: rgba(255, 248, 220, 0.48);
+      }
+
+      .slot-note {
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        color: rgba(255, 248, 220, 0.55);
+        line-height: 1.5;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .spine,
+        .hero,
+        .stage {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          grid-template-columns: 1fr;
+          padding: 1.5rem 1.25rem 2rem;
+        }
+
+        .spine {
+          writing-mode: horizontal-tb;
+          border-right: none;
+          border-bottom: 1px solid rgba(255, 248, 220, 0.08);
+          padding: 0 0 1rem;
+          letter-spacing: 0.28em;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="wrap">
-      <div class="panel">
-        <h1>Playground</h1>
-        <p>Importing <code>@ai-lit/ui</code> from workspace.</p>
-        <div class="row">
-          <ai-button id="btn">Click me</ai-button>
-          <ai-button disabled>Disabled</ai-button>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="page">
+      <aside class="spine" aria-hidden="true"><span>Lab · 01</span></aside>
+      <main>
+        <header class="hero">
+          <p class="eyebrow">Lit · Web Components</p>
+          <h1>组件试验场 <em>login</em></h1>
+          <p>
+            在下方试用登录面板。提交后，载荷会出现在浏览器开发者工具的控制台中。
+          </p>
+        </header>
+        <div class="stage">
+          <ai-login
+            heading="进入"
+            tagline="本地环境：不会发起网络认证请求。"
+            user-label="标识"
+            pass-label="密钥"
+            submit-label="确认"
+          >
+            <span class="slot-note">Local demo — nothing leaves this tab.</span>
+          </ai-login>
         </div>
-        <div style="height:14px;"></div>
-        <ai-table
-          headers='["Name","Role"]'
-          rows='[["Alice","Admin"],["Bob","Editor"],["Charlie","Viewer"]]'
-        ></ai-table>
-      </div>
+      </main>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
-
